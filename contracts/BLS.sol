@@ -5,7 +5,7 @@ import "./Pairing.sol";
 
 /**
  * @title BLS
- * @dev A library for verifying BLS signatures. Based on https://gist.github.com/BjornvdLaan/ca6dd4e3993e1ef392f363ec27fe74c4.
+ * @dev A library for verifying BLS signatures. Based on the work of https://gist.github.com/BjornvdLaan/ca6dd4e3993e1ef392f363ec27fe74c4, which is licensed under Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0).
  */
 library BLS {
     /*
