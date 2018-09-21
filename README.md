@@ -6,6 +6,12 @@
 
 This is a library for verifying [BLS signatures](https://en.wikipedia.org/wiki/Boneh%E2%80%93Lynn%E2%80%93Shacham) over [bn128](https://www.cryptojedi.org/papers/pfcpo.pdf) in Solidity. Almost all of the code here is taken from [BjornvdLaan's work](https://gist.github.com/BjornvdLaan/ca6dd4e3993e1ef392f363ec27fe74c4) and the work on ZoKrates available [here](https://github.com/JacobEberhardt/ZoKrates/blob/da5b13f845145cf43d555c7741158727ef0018a2/zokrates_core/src/verification.rs).
 
+## TODO
+
+- [ ] Add real testing
+- [ ] See if there are any obvious optimizations
+- [ ] Add support for verification of signatures with different messages
+
 ## Testing
 We use [Truffle](https://truffleframework.com/) for testing.
 
