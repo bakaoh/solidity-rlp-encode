@@ -1,6 +1,15 @@
 pragma solidity ^0.4.0;
 
+
+/**
+ * @title Pairing
+ * @dev BN128 pairing operations. Taken from https://github.com/JacobEberhardt/ZoKrates/blob/da5b13f845145cf43d555c7741158727ef0018a2/zokrates_core/src/verification.rs.
+ */
 library Pairing {
+    /*
+     * Structs
+     */
+
     struct G1Point {
         uint x;
         uint y;
@@ -16,10 +25,16 @@ library Pairing {
      * Internal functions
      */
 
+    /**
+     * @return The generator of G1.
+     */
     function P1() internal pure returns (G1Point) {
         return G1Point(1, 2);
     }
 
+    /**
+     * @return The generator of G2.
+     */
     function P2() internal pure returns (G2Point) {
         return G2Point({
             x: [
@@ -33,11 +48,21 @@ library Pairing {
         });
     }
 
+    /**
+     * @dev Hashes a message into G1.
+     * @param _message Message to hash.
+     * @return Hashed G1 point. 
+     */
     function hashToG1(bytes _message) internal returns (G1Point) {
         uint256 h = uint256(keccak256(_message));
         return curveMul(P1(), h);
     }
 
+    /**
+     * @dev Negates a point in G1.
+     * @param _point Point to negate.
+     * @return The negated point.
+     */
     function negate(G1Point _point) internal pure returns (G1Point) {
         uint q = 21888242871839275222246405745257275088696311157297823662689037894645226208583;
         if (_point.x == 0 && _point.y == 0) {
@@ -46,6 +71,12 @@ library Pairing {
         return G1Point(_point.x, q - (_point.y % q));
     }
 
+    /**
+     * @dev Computes the pairing check e(p1[0], p2[0]) *  .... * e(p1[n], p2[n]) == 1
+     * @param _g1points List of points in G1.
+     * @param _g2points List of points in G2.
+     * @return True if pairing check succeeds.
+     */
     function pairing(G1Point[] _g1points, G2Point[] _g2points) internal returns (bool) {
         require(_g1points.length == _g2points.length, "Point count mismatch.");
 
@@ -73,6 +104,14 @@ library Pairing {
         return out[0] != 0;
     }
 
+    /**
+     * @dev Convenience method for pairing check on two pairs.
+     * @param _g1point1 First point in G1.
+     * @param _g2point1 First point in G2.
+     * @param _g1point2 Second point in G1.
+     * @param _g2point2 Second point in G2.
+     * @return True if the pairing check succeeds.
+     */
     function pairing2(
         G1Point _g1point1,
         G2Point _g2point1,
@@ -93,6 +132,12 @@ library Pairing {
      * Private functions
      */
 
+    /**
+     * @dev Multiplies a point in G1 by a scalar.
+     * @param _point G1 point to multiply.
+     * @param _scalar Scalar to multiply.
+     * @return The resulting G1 point.
+     */
     function curveMul(G1Point _point, uint _scalar) private returns (G1Point) {
         uint[3] memory input;
         input[0] = _point.x;

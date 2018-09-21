@@ -2,11 +2,23 @@ pragma solidity ^0.4.0;
 
 import "./Pairing.sol";
 
+
+/**
+ * @title BLS
+ * @dev A library for verifying BLS signatures. Based on https://gist.github.com/BjornvdLaan/ca6dd4e3993e1ef392f363ec27fe74c4.
+ */
 library BLS {
     /*
      * Internal functions
      */
 
+    /**
+     * @dev Checks if a BLS signature is valid.
+     * @param _verificationKey Public verification key associated with the secret key that signed the message.
+     * @param _message Message that was signed.
+     * @param _signature Signature over the message.
+     * @return True if the message was correctly signed.
+     */
     function verify(
         Pairing.G2Point _verificationKey,
         bytes _message,

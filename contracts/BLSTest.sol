@@ -3,12 +3,17 @@ pragma solidity ^0.4.0;
 import "./Pairing.sol";
 import "./BLS.sol";
 
-contract Test {
+
+/**
+ * @title BLSTest
+ * @dev Testing contract for the BLS library.
+ */
+contract BLSTest {
     /*
      * Storage
      */
 
-    Pairing.G2Point aggregatePublicKey;
+    Pairing.G2Point verificationKey;
 
 
     /*
@@ -16,7 +21,7 @@ contract Test {
      */
 
     constructor() public {
-        aggregatePublicKey = Pairing.G2Point({
+        verificationKey = Pairing.G2Point({
             x: [
                 18523194229674161632574346342370534213928970227736813349975332190798837787897,
                 5725452645840548248571879966249653216818629536104756116202892528545334967238
@@ -38,6 +43,6 @@ contract Test {
             x: _signatureX,
             y: _signatureY
         });
-        return BLS.verify(aggregatePublicKey, _message, signature);
+        return BLS.verify(verificationKey, _message, signature);
     }
 }
