@@ -1,15 +1,14 @@
 # solidity-rlp-encode
-`RLPEncode` is an [RLP encoding]() library written in Solidity. The original author of this library is [Bakaoh](). This repository cleans up the original code and adds tests for the standard RLP encoding test cases.
+`RLPEncode` is an [RLP encoding](https://github.com/ethereum/wiki/wiki/RLP) library written in Solidity. The original author of this library is [Bakaoh](https://github.com/bakaoh). This repository cleans up the original code and adds tests for the standard RLP encoding test cases.
 
 ## TODO
 - [ ] Fix support for ABIEncoderV2.
 - [ ] Add tests for `encodeList`.
-- [ ] Add all tests as per RLP encoding specification.
 - [ ] See if there are any obvious optimizations.
 - [ ] Add documentation.
 
 ## Requirements
-This repository hosts a [Truffle]() project. Install truffle globally via NPM:
+This repository hosts a [Truffle](https://truffleframework.com/) project. Install truffle globally via NPM:
 
 ```
 $ npm install -g truffle

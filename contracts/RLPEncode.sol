@@ -36,6 +36,15 @@ library RLPEncode {
         return concat(encodeLength(list.length, 192), list);
     }
 
+    /**
+     * @dev RLP encodes a string.
+     * @param self The string to encode.
+     * @return The RLP encoded string in bytes.
+     */
+    function encodeString(string memory self) internal pure returns (bytes) {
+        return encodeBytes(bytes(self));
+    }
+
     /** 
      * @dev RLP encodes an address.
      * @param self The address to encode.

@@ -31,6 +31,15 @@ contract TestingWrapper {
         return RLPEncode.encodeList(self);
     }
 
+    /**
+     * @dev RLP encodes a string.
+     * @param self The string to encode.
+     * @return The RLP encoded string in bytes.
+     */
+    function encodeString(string memory self) public pure returns (bytes) {
+        return RLPEncode.encodeString(self);
+    }
+
     /** 
      * @dev RLP encodes an address.
      * @param self The address to encode.
