@@ -2,8 +2,9 @@ pragma solidity ^0.4.0;
 
 
 /**
- * @title A simple RLP encoding library.
- * @author Bakaoh.
+ * @title RLPEncode
+ * @dev A simple RLP encoding library.
+ * @author Bakaoh
  */
 library RLPEncode {
     /*
@@ -23,6 +24,16 @@ library RLPEncode {
             encoded = concat(encodeLength(self.length, 128), self);
         }
         return encoded;
+    }
+
+    /**
+     * @dev RLP encodes a list of RLP encoded byte byte strings.
+     * @param self The list of RLP encoded byte strings.
+     * @return The RLP encoded list of items in bytes.
+     */
+    function encodeList(bytes[] memory self) internal pure returns (bytes) {
+        bytes memory list = flatten(self);
+        return concat(encodeLength(list.length, 192), list);
     }
 
     /** 
@@ -66,20 +77,8 @@ library RLPEncode {
      */
     function encodeBool(bool self) internal pure returns (bytes) {
         bytes memory encoded = new bytes(1);
-        if (self) {
-            encoded[0] = bytes1(1);
-        }
+        encoded[0] = (self ? bytes1(0x01) : bytes1(0x80));
         return encoded;
-    }
-
-    /**
-     * @dev RLP encodes a list of RLP encoded byte byte strings.
-     * @param self The list of RLP encoded byte strings.
-     * @return The RLP encoded list of items in bytes.
-     */
-    function encodeList(bytes[] memory self) internal pure returns (bytes) {
-        bytes memory list = flatten(self);
-        return concat(encodeLength(list.length, 192), list);
     }
 
 
