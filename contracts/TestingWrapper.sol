@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity >=0.4.0 < 0.6.0;
 pragma experimental ABIEncoderV2;
 
 import "./RLPEncode.sol";
@@ -18,7 +18,7 @@ contract TestingWrapper {
      * @param self The byte string to encode.
      * @return The RLP encoded string in bytes.
      */
-    function encodeBytes(bytes memory self) public pure returns (bytes) {
+    function encodeBytes(bytes memory self) public pure returns (bytes memory) {
         return RLPEncode.encodeBytes(self);
     }
 
@@ -27,7 +27,7 @@ contract TestingWrapper {
      * @param self The list of RLP encoded byte strings.
      * @return The RLP encoded list of items in bytes.
      */
-    function encodeList(bytes[] memory self) public pure returns (bytes) {
+    function encodeList(bytes[] memory self) public pure returns (bytes memory) {
         return RLPEncode.encodeList(self);
     }
 
@@ -36,7 +36,7 @@ contract TestingWrapper {
      * @param self The string to encode.
      * @return The RLP encoded string in bytes.
      */
-    function encodeString(string memory self) public pure returns (bytes) {
+    function encodeString(string memory self) public pure returns (bytes memory) {
         return RLPEncode.encodeString(self);
     }
 
@@ -45,7 +45,7 @@ contract TestingWrapper {
      * @param self The address to encode.
      * @return The RLP encoded address in bytes.
      */
-    function encodeAddress(address self) public pure returns (bytes) {
+    function encodeAddress(address self) public pure returns (bytes memory) {
         return RLPEncode.encodeAddress(self);
     }
 
@@ -54,7 +54,7 @@ contract TestingWrapper {
      * @param self The uint to encode.
      * @return The RLP encoded uint in bytes.
      */
-    function encodeUint(uint self) public pure returns (bytes) {
+    function encodeUint(uint self) public pure returns (bytes memory) {
         return RLPEncode.encodeUint(self);
     }
 
@@ -63,7 +63,7 @@ contract TestingWrapper {
      * @param self The int to encode.
      * @return The RLP encoded int in bytes.
      */
-    function encodeInt(int self) public pure returns (bytes) {
+    function encodeInt(int self) public pure returns (bytes memory) {
         return RLPEncode.encodeInt(self);
     }
 
@@ -72,7 +72,7 @@ contract TestingWrapper {
      * @param self The bool to encode.
      * @return The RLP encoded bool in bytes.
      */
-    function encodeBool(bool self) public pure returns (bytes) {
+    function encodeBool(bool self) public pure returns (bytes memory) {
         return RLPEncode.encodeBool(self);
     }
 }
