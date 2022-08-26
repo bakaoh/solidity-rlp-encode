@@ -82,4 +82,11 @@ contract('RLPEncode', (accounts) => {
       assert.equal(encoded, '0x80', '"false" not correctly encoded');
     });
   });
+  it('should encode 128 correctly', () => {
+    return RLPEncode.deployed().then((instance) => {
+      return instance.encodeUint(128);
+    }).then((encoded) => {
+      assert.equal(encoded, '0x8180', ' Integer 128 not correctly encoded');
+    });
+  });
 });
