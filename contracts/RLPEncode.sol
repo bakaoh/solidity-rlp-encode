@@ -189,6 +189,7 @@ library RLPEncode {
         uint len;
         uint i;
         for (i = 0; i < _list.length; i++) {
+            require(_list[i].length > 0, "An item in the list to be RLP encoded is null.");
             len += _list[i].length;
         }
 
